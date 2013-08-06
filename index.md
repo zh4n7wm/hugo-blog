@@ -1,7 +1,6 @@
 ---
-layout: page
-title: Blog
-tagline: Supporting tagline
+layout: default
+title: Home
 ---
 {% include JB/setup %}
 
