@@ -9,10 +9,10 @@ pygments: true
 # Themes are encouraged to use these universal variables 
 # so be sure to set them if your theme uses them.
 #
-title : ox0spy blog
-tagline: Linux, Bash, C, Python, Android, CI
-author : ox0spy
-  name : Zhang Wanming
+title : "ox0spy's blog"
+tagline: Linux Android Bash Python C
+author :
+  name : ox0spy
   email : ox0spy@gmail.com
   github : ox0spy
   twitter : ox0spy
