@@ -114,11 +114,11 @@ __PS__:默认情况下，调用OpenGork脚本是会生成项目的历史记录�
 
 修改/data/apache-tomcat-7.0.6/webapps/source/WEB-INF/web.xml
 {% highlight xml %}
-  &lt;context-param&gt;
-    &lt;param-name&gt;CONFIGURATION&lt;/param-name&gt;
-    &lt;param-value&gt;/var/opengrok/etc/configuration.xml&lt;/param-value&gt;
-    &lt;description&gt;Full path to the configuration file where OpenGrok can read it's configuration&lt;/description&gt;
-  &lt;/context-param&gt;
+  <context-param>
+    <param-name>CONFIGURATION</param-name>
+    <param-value>/var/opengrok/etc/configuration.xml</param-value>
+    <description>Full path to the configuration file where OpenGrok can read it's configuration</description>
+  </context-param>
 {% endhighlight %}
 
 将上面的param-value修改为`/data/opengrok\_data/etc/configuration.xml`
