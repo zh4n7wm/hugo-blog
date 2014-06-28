@@ -56,7 +56,7 @@ global_defs {
 vrrp_instance VI_1 {
     state MASTER          #BACKUP上修改为BACKUP
     interface eth0
-    virtual_router_id 130 #与备机的id必须一致
+    virtual_router_id 51  #与备机的id必须一致
     priority 100          #BACKUP上修改为80
     advert_int 1
     authentication {
@@ -134,8 +134,8 @@ global_defs {
 vrrp_instance VI_1 {
     state BACKUP          #BACKUP上修改为BACKUP
     interface eth0
-    virtual_router_id 129 #与备机的id必须一致
-    priority 80          #BACKUP上修改为80
+    virtual_router_id 51  #与备机的id必须一致
+    priority 80           #BACKUP上修改为80
     advert_int 1
     authentication {
         auth_type PASS
@@ -186,9 +186,36 @@ $ sudo bash -c 'echo "Web App Server 1" > /usr/share/nginx/www/index.html'
 {% endhighlight %}
 
 
-### 配置virtual server
+### 配置IP
 {% highlight sh %}
-$ sudo ifconfig eth0:1 172.16.8.252 netmask 255.255.255.255 up
+$ sudo ifconfig eth0:0 172.16.8.252 netmask 255.255.255.255 up
+{% endhighlight %}
+
+修改配置文件 （上面的配置重启后需要重新输入命令）
+{% highlight sh %}
+$ cat /etc/network/interfaces
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+# The loopback network interface
+auto lo
+auto eth0
+auto eth0:0
+
+iface lo inet loopback
+
+# The primary network interface
+allow-hotplug eth0
+#iface eth0 inet dhcp
+iface eth0 inet static
+        address 172.16.8.131
+        netmask 255.255.255.0
+        gateway 172.16.8.2
+
+iface eth0:0 inet static
+        address 172.16.8.252
+        netmask 255.255.255.255
+        gateway 172.16.8.2
 {% endhighlight %}
 
 
@@ -201,11 +228,37 @@ $ sudo bash -c 'echo "Web App Server 2" > /usr/share/nginx/www/index.html'
 {% endhighlight %}
 
 
-### 配置virtual server
+### 配置IP
 {% highlight sh %}
-$ sudo ifconfig eth0:1 172.16.8.252 netmask 255.255.255.255 up
+$ sudo ifconfig eth0:0 172.16.8.252 netmask 255.255.255.255 up
 {% endhighlight %}
 
+修改配置文件 （上面的配置重启后需要重新输入命令）
+{% highlight sh %}
+$ cat /etc/network/interfaces
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+# The loopback network interface
+auto lo
+auto eth0
+auto eth0:0
+
+iface lo inet loopback
+
+# The primary network interface
+allow-hotplug eth0
+#iface eth0 inet dhcp
+iface eth0 inet static
+        address 172.16.8.132
+        netmask 255.255.255.0
+        gateway 172.16.8.2
+
+iface eth0:0 inet static
+        address 172.16.8.252
+        netmask 255.255.255.255
+        gateway 172.16.8.2
+{% endhighlight %}
 
 # 启动LVS, keepalived
 {% highlight sh %}
