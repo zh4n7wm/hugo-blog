@@ -43,6 +43,8 @@ go 命令行安装:
 
     $ hugo --theme even
 
+更多 `theme`: <http://themes.gohugo.io/>
+
 6. 在 `github.com` 上创建名为 `username.github.io` 的 `git` 库
 
 7. 将生成的静态文件 `push` 到 `username.github.io`
@@ -58,3 +60,12 @@ go 命令行安装:
     $ cd ../
     $ git submodule add git@github.com:ox0spy/ox0spy.github.io.git public
 
+8. 创建一个git库
+
+在 `github` 上创建一个新的 `git`库 来保存 `hugo`文件及 `*.md`。
+
+    $ git init
+    $ git add .
+    $ git commit -m 'initial commit.'
+    $ git remote add origin git@github.com:ox0spy/hugo-blog.git
+    $ git -u origin master
