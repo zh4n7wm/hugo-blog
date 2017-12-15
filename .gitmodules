@@ -1,0 +1,6 @@
+[submodule "public"]
+    path = public
+    url = git@github.com:ox0spy/ox0spy.github.io.git
+[submodule "themes/even"]
+	path = themes/even
+	url = https://github.com/olOwOlo/hugo-theme-even

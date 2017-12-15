@@ -1,0 +1,172 @@
+---
+title: "wifi hotspot setup on ubuntu 12.04"
+date: 2017-12-15T19:22:01+08:00
+tags: ["ubuntu"]
+categories: ["ubuntu"]
+---
+
+hotspot配置参考：http://thenewbieblog.wordpress.com/2012/05/01/wifi-hotspot-setup-on-ubuntu/
+Android利用Fiddler抓包：http://www.trinea.cn/android/android-network-sniffer/
+Android利用tcpdump抓包：http://www.trinea.cn/android/tcpdump_wireshark/
+
+为了Ubuntu笔记本方便对Android手机上的Apps做抓包, 本文介绍两种方法，方法二更容易配置。
+有线、无线同时可以工作时，用下面方法将无线网卡作为hotspot，通过有线连接外网。
+如果想直接通过无线网卡上外网，需要先停掉hostapd 或 ap-hotspot，并重启网络。
+
+重启网络:
+
+    :::bash
+    $ sudo service network-manager restart
+
+方法一
+=======
+
+查看无线网卡硬件信息
+---------------------
+
+    :::bash
+
+    $ sudo lspci | grep -i network
+    03:00.0 Network controller: Intel Corporation Wireless 7260 (rev 6b)
+
+
+查看无线网卡驱动信息
+---------------------
+
+    :::bash
+
+    $ lsmod
+
+查看无线网卡设备名称
+---------------------
+
+    :::bash
+
+    $ iwconfig
+    wlan0     IEEE 802.11bgn  Mode:Master  Tx-Power=16 dBm   
+              Retry  long limit:7   RTS thr:off   Fragment thr:off
+              Power Management:on
+
+
+安装需要的软件
+---------------
+
+    :::bash
+
+    $ sudo apt-get install dhcp3-server hostapd
+
+修改/etc/hostapd/hostapd.conf
+------------------------------
+
+    :::bash
+
+    $ cat /etc/hostapd/hostapd.conf
+    interface=wlan0
+    driver=nl80211
+    ssid=your_hotspot_name
+    channel=1
+    hw_mode=g
+    auth_algs=1
+    wpa=3
+    wpa_passphrase=your-password
+    wpa_key_mgmt=WPA-PSK
+    wpa_pairwise=TKIP CCMP
+    rsn_pairwise=CCMP
+
+
+修改/etc/default/isc-dhcp-server
+---------------------------------
+
+    :::bash
+
+    $ grep INTERFACES /etc/default/isc-dhcp-server
+    INTERFACES="wlan0"
+
+
+修改/etc/dhcp/dhcpd.conf
+-------------------------
+
+    :::bash
+
+    配置文件: /etc/dhcp/dhcpd.conf
+    Make sure the follow lines are Commented out ( put a hash “#”  sign at the beginning of the line ) the following lines:
+    # option definitions common to all supported networks…
+    #option domain-name “example.org”;
+    #option domain-name-servers ns1.example.org, ns2.example.org;
+    #default-lease-time 600;
+    #max-lease-time 7200;
+
+    Add the following lines to the file (copy and paste)
+    subnet 10.10.0.0 netmask 255.255.255.0 {
+            range 10.10.0.2 10.10.0.16;
+            option domain-name-servers 8.8.4.4, 208.67.222.222;
+            option routers 10.10.0.1;
+    }
+
+    (Note: the only other line in this whole config file that is uncommented is :
+
+    ddns-update-style none;)
+
+
+修改/etc/default/hostapd
+-------------------------
+
+    :::bash
+
+    $ grep -E 'RUN_DAEMON|DAEMON_CONF|DAEMON_OPTS' /etc/default/hostapd | grep -Ev '^#'
+    RUN_DAEMON="yes"
+    DAEMON_CONF="/etc/hostapd/hostapd.conf"
+    DAEMON_OPTS="-dd"
+
+
+修改/etc/network/interfaces
+----------------------------
+
+    :::bash
+
+    $ cat /etc/network/interfaces
+    auto lo
+    iface lo inet loopback
+    auto wlan0
+    iface wlan0 inet static
+        address 10.10.0.1
+        netmask 255.255.255.0
+
+
+修改/etc/sysctl.conf
+---------------------
+
+    :::bash
+    $ grep net.ipv4.ip_forward /etc/sysctl.conf 
+    net.ipv4.ip_forward=1
+
+
+修改/etc/rc.local
+-------------------
+
+    :::bash
+    编辑 /etc/rc.local, 在 "exit 0" 前添加下一行
+    iptables -t nat -A POSTROUTING -s 10.10.0.0/16 -o ppp0 -j MASQUERADE
+
+
+重启电脑
+---------
+
+重启电脑，手机测试是否可以连接.
+
+
+方法二
+=======
+
+用ap-hotspot更容易搭建。
+
+ap-hotspot安装、配置
+---------------------
+
+    :::bash
+    $ sudo add-apt-repository ppa:nilarimogard/webupd8
+    $ sudo apt-get install ap-hotspot
+    $ sudo ap-hotspot configure # configure
+    $ sudo ap-hotspot start # start
+    $ sudo ap-hotspot stop # stop
+    $ sudo ap-hotspot restart # restart
