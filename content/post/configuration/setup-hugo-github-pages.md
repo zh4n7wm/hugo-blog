@@ -1,5 +1,5 @@
 ---
-title: "Setup Hugo Github Pages"
+title: "Hugo搭建部署在Github上的blog"
 author: "ox0spy"
 date: 2017-12-15T21:08:54+08:00
 tags: ["blog", "hugo"]
@@ -19,35 +19,37 @@ go 命令行安装:
 
 ## 创建一个静态blog
 
-1. 创建名为 `blog` 的静态博客
+### 创建名为 `blog` 的静态博客
 
     $ hugo new site blog
 
-2. 下载 `theme`
+### 下载 `theme`
 
-   $ git submodule add https://github.com/olOwOlo/hugo-theme-even themes/even
+从 github 上 fork 主题到自己的 github 中，方便以后自己修改主题。
+
+   $ git submodule add https://github.com/ox0spy/hugo-theme-even themes/even
    $ cp themes/even/exampleSite/config.toml .
 
 注：编辑 `config.toml`
 
-3. 写第一篇文章
+### 写第一篇文章
 
     $ hugo new hello-world.md
     $ vim content/hello-world.md  # 用vim编辑器写 Markdown 即可
 
-4. 查看效果
+### 查看效果
 
     $ hugo server --theme=even --buildDrafts --watch
 
-5. 生成静态文件
+### 生成静态文件
 
     $ hugo --theme even
 
 更多 `theme`: <http://themes.gohugo.io/>
 
-6. 在 `github.com` 上创建名为 `username.github.io` 的 `git` 库
+### 在 `github.com` 上创建名为 `username.github.io` 的 `git` 库
 
-7. 将生成的静态文件 `push` 到 `username.github.io`
+### 将生成的静态文件 `push` 到 `username.github.io`
 
     $ cd public
     $ git init
@@ -60,7 +62,7 @@ go 命令行安装:
     $ cd ../
     $ git submodule add git@github.com:ox0spy/ox0spy.github.io.git public
 
-8. 创建一个git库
+### 创建一个git库
 
 在 `github` 上创建一个新的 `git`库 来保存 `hugo`文件及 `*.md`。
 
