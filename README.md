@@ -2,6 +2,10 @@
 
 power by `Hugo`
 
-## travis-ci
+### 生成静态文件
 
-代码提交后，travis-ci 自动 build，然后将生成的静态文件 push 到 githug pages 分支。
+    $ make html
+
+### 提交静态文件到另一个git库
+
+    $ make push
