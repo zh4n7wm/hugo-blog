@@ -7,8 +7,7 @@ html: clean
 	hugo --theme even
 
 push: html
-	@rm -rf ${PUBLIC_DIR}
-	git clone ${PUBLIC_REPO} ${PUBLIC_DIR} && \
+	{ test -d ${PUBLIC_DIR}/.git && git -C ${PUBLIC_DIR} pull origin master || git clone ${PUBLIC_REPO} ${PUBLIC_DIR} ;} && \
 		cp -rf public/* ${PUBLIC_DIR} && \
 		cd ${PUBLIC_DIR} && \
 		git add -f --all && \
