@@ -1,6 +1,3 @@
-[submodule "public"]
-	path = public
-	url = git@github.com:ox0spy/ox0spy.github.io.git
 [submodule "themes/even"]
 	path = themes/even
 	url = git@github.com:ox0spy/hugo-theme-even.git
