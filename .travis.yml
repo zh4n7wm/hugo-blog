@@ -1,28 +1,26 @@
 language: python
 python:
-  - '3.6'
-
+- '3.6'
 notifications:
   email:
     recipients:
     - ox0spy@gmail.com
     on_success: change
     on_failure: always
-
 before_install:
-  - export TZ=Asia/Shanghai
-
+- export TZ=Asia/Shanghai
 install:
-  - sudo apt-get install hugo
-  - pip install pygments
-
+- sudo apt-get install hugo
+- pip install pygments
 script:
-  - hugo --theme even
-
+- hugo --theme even
 deploy:
   provider: pages
-  github-token: $GITHUB_TOKEN  # Set in travis-ci.org dashboard, marked secure
+  github-token: "$GITHUB_TOKEN"
   skip-cleanup: true
   keep-history: true
   on:
     branch: master
+env:
+  global:
+    secure: bZas012UzBBq7H+qV+xPVtjASJg1zij+44T0yOFXgZdnKkLUwT8CXk6n/HiIYkDSIgwU/2iTyQmOS78LihD7qtTJqnkYs1YLJzQzlaSocZADHmY59RF6g9tQAOPxs1j5279/mTfCdkN2T4QzEsIHzJL/D3B4rEVQWoRp4p8JHe4XYfOTUn2djw/OsmtDiZ8jVa6ycItlJuVnul1XY7obVVF8AuDxqFf0+hxWdvoq5wGOf4h6IL9rMdaglCtvxLdbBRPmoFI5jLFILT38B+gjJCBL5o6Td7XFl+KmyOTeJgh6NEs29J+FH2oKHuzdVBiOkyZRctnr3Vn0kkSYO04g4RwAWwFFcvT0NfQmx8hUiM/4mN8KgGeTaIF7YAkxEnX7GlF6Rti5eCDMSJfO0nGDtOpvzK5Xk+WxDBeJgt6YnwwD5tKMLo370Tt8jcvGAx0HzjgKc2mCobgA8JgaGAHGrUendVZyRhii177gq8nbiN2XT2JUmmd+/yYuiPJnn5vQa9rlCGRQf7zkLo0ANlRyn/DNt3ZOTw9dUgVuXw5PxwV6TMwSmnT9gEq41vPf89Dj6XS5Di2TmpSpZPwG9O8k1NTGEXBjLwxdDwP6WuPyxrE8RSxrf/Q8A9BsTwbUwQSQhiqU37qleUSmijvCicGY2CHqBZEKiIEckStOolIqB7Y=
