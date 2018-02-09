@@ -3,6 +3,9 @@
 PUBLIC_DIR:=../github-blog-public
 PUBLIC_REPO:=git@github.com:ox0spy/ox0spy.github.io.git
 
+server:
+	hugo server --theme even
+
 html: clean
 	hugo --theme even
 
