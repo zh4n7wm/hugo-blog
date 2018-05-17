@@ -12,7 +12,7 @@ categories: ["bigdata"]
 
 查看Spark logs:
 
-- 登陆emr slave/node: `/mnt/var/log/hadoop-yarn/containers/application_ID/container_ID/{stdout, stderr}`
+- 登陆emr slave/node: `/mnt/var/log/hadoop-yarn/containers/<application_ID>/<container_ID>/{stdout, stderr}`
 - Resource Manager 的 web 接口：[查看 Amazon EMR 集群上托管的 Web 界面](https://docs.aws.amazon.com/zh_cn/emr/latest/ManagementGuide/emr-web-interfaces.html)
 
-只要知道的如何查看错误日志，怎么解决运行Spark程序 或者 环境的问题就很简单了。
+知道了如何查看错误日志，解决运行Spark程序 或者 环境的问题就很简单了。
