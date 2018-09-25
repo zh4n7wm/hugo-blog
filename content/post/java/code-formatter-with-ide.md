@@ -4,7 +4,7 @@ author: "ox0spy"
 categories: ["java", "eclipse", "IDEA"]
 ---
 
-### 代码格式化
+# 代码格式化
 
 ## 导入 Google java code style xml 配置
 
