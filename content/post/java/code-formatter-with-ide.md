@@ -1,5 +1,6 @@
 ---
 title: "code formatter with ide"
+date: 2018-09-22T14:06:00+08:00
 author: "ox0spy"
 categories: ["java", "eclipse", "IDEA"]
 ---

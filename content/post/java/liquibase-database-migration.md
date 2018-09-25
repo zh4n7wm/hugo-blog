@@ -1,5 +1,6 @@
 ---
 title: "liquibase for Java database migration"
+date: 2018-09-25T21:06:00+08:00
 author: "ox0spy"
 categories: ["java", "database", "migration", "liquibase"]
 ---

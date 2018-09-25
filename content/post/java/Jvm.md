@@ -1,5 +1,6 @@
 ---
 title: "jvm"
+date: 2018-09-20T10:06:00+08:00
 author: "ox0spy"
 categories: ["java"]
 ---
