@@ -135,3 +135,4 @@ rollback 回滚命令，将数据库中的一些 changeset 回滚：
 ## 参考文档
 
 - [How To Execute Database Migrations With Liquibase](https://blog.smaato.com/how-to-execute-database-migrations-with-liquibase)
+- [Liquibase 筆記](http://blog.kent-chiu.com/2014/08/30/liquibase-101.html)
