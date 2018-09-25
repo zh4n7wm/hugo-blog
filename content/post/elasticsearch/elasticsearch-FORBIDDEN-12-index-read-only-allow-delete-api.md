@@ -1,4 +1,9 @@
-
+---
+title: "elasticsearch FORBIDDEN 12 index read only allow delete api"
+date: 2018-07-22T14:06:00+08:00
+author: "ox0spy"
+categories: ["elasticsearch"]
+---
 
 由于我的 Mac OSX 硬盘基本没空间了，导致 ElasticSearch 创建索引报错了。
 
