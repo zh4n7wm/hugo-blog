@@ -47,7 +47,7 @@ copyright = ""            # default: author.name ↓        # 默认为下面配
   since = "2017"            # Site creation time          # 站点建立时间
 
   # site info (optional)                                  # 站点信息（可选，不需要的可以直接注释掉）
-  logoTitle = "wiseturtles"        # default: the title value    # 默认值: 上面设置的title值
+  # logoTitle = "wiseturtles"        # default: the title value    # 默认值: 上面设置的title值
   keywords = ["ox0spy", "python", "flask", "django", "go", "golang", "programming", "coding", "even"]
   description = "ox0spy's blog"
 
@@ -87,8 +87,8 @@ copyright = ""            # default: author.name ↓        # 默认为下面配
 
   [params.reward]                                         # 文章打赏
     enable = true
-    wechat = "static/img/reward/wechat.jpg"           # 微信二维码
-    alipay = "static/img/reward/alipay.jpg"           # 支付宝二维码
+    wechat = "/img/reward/ox0spy-wechat.png"           # 微信二维码
+    alipay = "/img/reward/ox0spy-alipay.png"           # 支付宝二维码
 
   [params.social]                                         # 社交链接
     a-email = "mailto:ox0spy@gmail.com"
